@@ -1,0 +1,161 @@
+openapi: 3.0.0
+info:
+  title: Transfer
+  version: '1.0'
+servers:
+  - url: 'http://localhost:8000'
+    description: local
+paths:
+  /transfers:
+    post:
+      summary: ''
+      operationId: post-transfers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transferId:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    enum:
+                      - DRAFT
+                required:
+                  - transferId
+                  - status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                origin:
+                  type: string
+                  enum:
+                    - STUDIO
+                    - STORE
+                    - MONTREAL_DC
+                    - BRUSSELS_DC
+                destination:
+                  type: string
+                  enum:
+                    - STUDIO
+                    - STORE
+                    - MONTREAL_DC
+                    - BRUSSELS_DC
+              required:
+                - origin
+                - destination
+  '/transfers/{transferId}/items':
+    parameters:
+      - schema:
+          type: string
+        name: transferId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-transfers-transferId-items
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transferId:
+                    type: string
+                    format: uuid
+                  state:
+                    type: string
+                    enum:
+                      - DRAFT
+                      - RELEASE_PENDING
+                      - RELEASED
+                  numberOfItems:
+                    type: integer
+                    minimum: 0
+  '/transfers/{transferId}':
+    parameters:
+      - schema:
+          type: string
+        name: transferId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transfer'
+      operationId: get-transfers-transferId
+  '/transfers/{transferId}/release':
+    parameters:
+      - schema:
+          type: string
+        name: transferId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-transfer-transferId-release
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transferId:
+                    type: string
+                  state:
+                    type: string
+                    enum:
+                      - RELEASE_PENDING
+                      - RELEASED
+                  numberOfItems:
+                    type: integer
+                    minimum: 1
+components:
+  schemas:
+    Item:
+      title: Item
+      type: object
+      properties:
+        sku:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+    Transfer:
+      title: Transfer
+      type: object
+      properties:
+        transferId:
+          type: string
+        origin:
+          type: string
+        destination:
+          type: string
+        state:
+          type: string
+          enum:
+            - DRAFT
+            - RELEASE_PENDING
+            - RELEASED
+        items:
+          type: array
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/Item'

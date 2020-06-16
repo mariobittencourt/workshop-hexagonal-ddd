@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2019",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noEmitOnError": true,
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true,
+    "types": ["reflect-metadata"]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

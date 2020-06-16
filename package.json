@@ -1,0 +1,57 @@
+{
+  "name": "workshop-hexagonal-ddd",
+  "version": "1.0.0",
+  "description": "Workshop Hexagonal Architecture with DDD",
+  "main": "index.js",
+  "dependencies": {
+    "@ssense/logger": "^1.0.3",
+    "axios": "^0.19.2",
+    "inversify": "^5.0.1",
+    "reflect-metadata": "^0.1.13",
+    "restify": "^8.5.1",
+    "restify-errors": "^8.0.2",
+    "source-map-support": "^0.5.10",
+    "uuid": "^7.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-proposal-decorators": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-typescript": "^7.10.1",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^13.13.9",
+    "@types/restify": "^8.4.2",
+    "@types/restify-errors": "^4.3.3",
+    "@types/uuid": "^7.0.4",
+    "babel-jest": "^25.4.0",
+    "fork-ts-checker-webpack-plugin": "^3.0.1",
+    "jest": "^25.4.0",
+    "nodemon": "^2.0.4",
+    "ts-loader": "^5.3.3",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.3",
+    "webpack": "^4.29.0",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "scripts": {
+    "build": "rimraf build && tsc",
+    "test": "jest",
+    "start": "nodemon --exec ts-node server.ts",
+    "start-server": "node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariobittencourt/workshop-hexagonal-ddd.git"
+  },
+  "keywords": [
+    "workshop",
+    "typescript"
+  ],
+  "author": "Mario Bittencourt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariobittencourt/workshop-hexagonal-ddd/issues"
+  },
+  "homepage": "https://github.com/mariobittencourt/workshop-hexagonal-ddd#readme"
+}
