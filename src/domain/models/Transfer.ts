@@ -2,6 +2,7 @@ import {TransferId} from "./TransferId";
 import {Item} from "./Item";
 import {InvalidTransferException} from "./InvalidTransferException";
 import {Route} from "./Route";
+import {Outbound} from "./Outbound";
 
 export enum TransferStates {
     DRAFT,
@@ -12,7 +13,7 @@ export enum TransferStates {
 export class Transfer {
     private _state: TransferStates;
     private _items: Array<Item>;
-    private _confirmationId: string;
+    private _outbound: Outbound;
 
     private constructor(private readonly _id: TransferId, private _route: Route) {
         this._state = TransferStates.DRAFT;
@@ -23,8 +24,8 @@ export class Transfer {
         return new Transfer(id, route);
     }
 
-    addItem(item: Item): void {
-        this._items.push(item);
+    addItem(sku: string, quantity: number): void {
+        this._items.push(Item.create(sku, quantity));
     }
 
     release(): void {
@@ -40,12 +41,12 @@ export class Transfer {
 
     }
 
-    completeRelease(confirmationId: string): void {
+    completeRelease(outbound: Outbound): void {
         if (this.state != TransferStates.RELEASE_PENDING) {
             throw new InvalidTransferException('You can only confirm releases that are in pending state');
         }
 
-        this._confirmationId = confirmationId;
+        this._outbound = outbound;
         this._state = TransferStates.RELEASED;
     }
 
@@ -65,7 +66,7 @@ export class Transfer {
         return this._items;
     }
 
-    get confirmationId(): string {
-        return this._confirmationId;
+    get outbound(): Outbound {
+        return this._outbound;
     }
 }

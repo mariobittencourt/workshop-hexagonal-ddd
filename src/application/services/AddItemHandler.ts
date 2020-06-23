@@ -4,7 +4,6 @@ import {inject, injectable} from "inversify";
 import {TYPES} from "../../infrastructure/di/types";
 import {TransferId} from "../../domain/models/TransferId";
 import {UnknownTransferException} from "./UnknownTransferException";
-import {Item} from "../../domain/models/Item";
 import {TransferDto} from "../dtos/TransferDto";
 import {TransferStates} from "../../domain/models/Transfer";
 
@@ -19,7 +18,7 @@ export class AddItemHandler {
             throw new UnknownTransferException('The transfer does not exist');
         }
 
-        transfer.addItem(Item.create(command.sku, command.quantity));
+        transfer.addItem(command.sku, command.quantity);
         await this.repository.save(transfer);
 
         return new TransferDto(transfer.id.toString(), TransferStates[transfer.state], transfer.items.length);

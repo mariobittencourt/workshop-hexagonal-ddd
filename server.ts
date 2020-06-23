@@ -4,6 +4,7 @@ import {kernel} from "./src/infrastructure/di/inversify.config";
 import {CreateTransferController} from "./src/ui/http/controllers/CreateTransferController";
 import {TYPES} from "./src/infrastructure/di/types";
 import {AddItemController} from "./src/ui/http/controllers/AddItemController";
+import {ReleaseTransferController} from "./src/ui/http/controllers/ReleaseTransferController";
 
 let server = restify.createServer();
 server.use(restify.plugins.bodyParser({ mapParams: false }));
@@ -20,4 +21,9 @@ server.post('/transfers', (req, res, next) => {
 const addItemController = kernel.get<AddItemController>(TYPES.AddItemController);
 server.post('/transfers/:transferId/items', (req, res, next) => {
     addItemController.add(req, res, next);
+});
+
+const releaseTransferController = kernel.get<ReleaseTransferController>(TYPES.ReleaseTransferController);
+server.post('/transfers/:transferId/release', (req, res, next) => {
+    releaseTransferController.release(req, res, next);
 });
