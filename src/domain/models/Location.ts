@@ -16,4 +16,8 @@ export class Location {
     equals(newLocation: Location): boolean {
         return this.value == newLocation.value;
     }
+
+    toString(): string {
+        return this.value;
+    }
 }

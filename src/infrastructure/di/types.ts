@@ -7,6 +7,10 @@ const TYPES = {
     ReleaseTransferController:Symbol.for('ReleaseTransferController'),
     ReleaseTransferHandler:Symbol.for('ReleaseTransferHandler'),
     CreateOutboundService:Symbol.for('CreateOutboundService'),
+
+    AxiosInstance:Symbol.for('AxiosInstance'),
+    HighJumpAdapter: Symbol.for('HighJumpAdapter'),
+    HighJumpTranslator: Symbol.for('HighJumpTranslator')
 }
 
 export { TYPES };

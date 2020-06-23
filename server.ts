@@ -5,6 +5,7 @@ import {CreateTransferController} from "./src/ui/http/controllers/CreateTransfer
 import {TYPES} from "./src/infrastructure/di/types";
 import {AddItemController} from "./src/ui/http/controllers/AddItemController";
 import {ReleaseTransferController} from "./src/ui/http/controllers/ReleaseTransferController";
+import { v4 as uuid } from 'uuid';
 
 let server = restify.createServer();
 server.use(restify.plugins.bodyParser({ mapParams: false }));
@@ -26,4 +27,13 @@ server.post('/transfers/:transferId/items', (req, res, next) => {
 const releaseTransferController = kernel.get<ReleaseTransferController>(TYPES.ReleaseTransferController);
 server.post('/transfers/:transferId/release', (req, res, next) => {
     releaseTransferController.release(req, res, next);
+});
+
+// My fake warehouse system
+server.post('/outbound', (req, res, next) => {
+   res.send({
+       response_id: uuid(),
+       status: '0'
+   });
+   next();
 });

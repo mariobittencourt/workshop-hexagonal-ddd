@@ -3,6 +3,8 @@ import {TYPES} from "../../infrastructure/di/types";
 import {TransferRepository} from "../../domain/models/TransferRepository";
 import {CreateOutboundService} from "./CreateOutboundService";
 import {ReleaseTransferCommand} from "./ReleaseTransferCommand";
+import {TransferId} from "../../domain/models/TransferId";
+import {UnknownTransferException} from "./UnknownTransferException";
 
 @injectable()
 export class ReleaseTransferHandler {
@@ -11,6 +13,15 @@ export class ReleaseTransferHandler {
     }
 
     async handle(command: ReleaseTransferCommand): Promise<boolean> {
-        return Promise.resolve(true);
+        try {
+            let transfer = await this.repository.findByIdOrFail(TransferId.createFromString(command.transferId));
+            const outbound = await this.outboundService.create(transfer);
+            transfer.completeRelease(outbound);
+            await this.repository.save(transfer);
+            return Promise.resolve(true);
+        } catch (exception) {
+            // Maybe I care about some exceptions to do something or in this case just rethrowing
+            throw exception;
+        }
     }
 }

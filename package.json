@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@ssense/logger": "^1.0.3",
+    "axios": "^0.19.2",
     "inversify": "^5.0.1",
     "reflect-metadata": "^0.1.13",
     "restify": "^8.5.1",
@@ -13,10 +14,10 @@
     "uuid": "^7.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
+    "@babel/core": "^7.10.3",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
-    "@babel/plugin-proposal-decorators": "^7.10.1",
-    "@babel/preset-env": "^7.10.2",
+    "@babel/plugin-proposal-decorators": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
     "@babel/preset-typescript": "^7.10.1",
     "@types/jest": "^25.2.3",
     "@types/node": "^13.13.9",
