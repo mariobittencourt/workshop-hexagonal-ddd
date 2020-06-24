@@ -13,7 +13,7 @@ export class ReleaseTransferController {
         const command = new ReleaseTransferCommand(req.params.transferId);
         try {
             const response = await this.handler.handle(command);
-            res.send();
+            res.send({success: response});
         } catch (exception) {
 
         }
