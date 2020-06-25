@@ -4,6 +4,7 @@ import {AddItemCommand} from "../../../application/services/AddItemCommand";
 import {AddItemHandler} from "../../../application/services/AddItemHandler";
 import {Next, Request, Response} from "restify";
 import {UnknownTransferException} from "../../../application/services/UnknownTransferException";
+import {BadRequestError, NotFoundError} from "restify-errors";
 
 @injectable()
 export class AddItemController {
@@ -18,13 +19,12 @@ export class AddItemController {
         } catch (exception) {
             switch (exception.constructor) {
                 case UnknownTransferException:
-                    res.send(404);
-                    break;
+                    return next(new NotFoundError());
                 default:
                     // In reality handle the other types, some can be 500 etc
-                    res.send(400);
+                    return next(new BadRequestError());
             }
         }
-        next();
+        return next();
     }
 }

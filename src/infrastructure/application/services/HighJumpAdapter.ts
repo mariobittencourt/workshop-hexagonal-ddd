@@ -4,6 +4,7 @@ import {Outbound} from "../../../domain/models/Outbound";
 import {HighJumpOutbound} from "./HighJumpOutbound";
 import {inject, injectable} from "inversify";
 import {TYPES} from "../../di/types";
+import {UnableToCreateOutboundException} from "../../../application/services/UnableToCreateOutboundException";
 
 @injectable()
 export class HighJumpAdapter {
@@ -20,7 +21,9 @@ export class HighJumpAdapter {
             });
             return this.translator.translate(response.data);
         } catch (exception) {
-            // Convert this low level into a Domain level exception
+            // Convert this low level into an application level exception
+            // Maybe it was a timeout, maybe it returned 5xx or 4xx
+            throw new UnableToCreateOutboundException('Could not create outbound');
         }
     }
 }

@@ -4,7 +4,7 @@ export enum OutboundState {
 }
 
 export class Outbound {
-    private constructor(readonly confirmationId: string, state: OutboundState) {
+    private constructor(readonly confirmationId: string, readonly state: OutboundState) {
         // Do whatever validation is needed
     }
 

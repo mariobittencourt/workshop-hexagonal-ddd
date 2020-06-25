@@ -38,6 +38,7 @@
     "build": "rimraf build && tsc",
     "test": "jest",
     "start": "nodemon --exec ts-node server.ts",
+    "start-warehouse": "nodemon --exec ts-node warehouse.ts",
     "start-server": "node dist/server.js"
   },
   "repository": {

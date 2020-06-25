@@ -35,6 +35,6 @@ kernel.bind<HighJumpAdapter>(TYPES.HighJumpAdapter).to(HighJumpAdapter);
 kernel.bind<HighJumpTranslator>(TYPES.HighJumpTranslator).to(HighJumpTranslator);
 kernel.bind<CreateOutboundService>(TYPES.CreateOutboundService).to(HighJumpService);
 kernel.bind<AxiosInstance>(TYPES.AxiosInstance).toConstantValue(
-    axios.create({baseURL: 'http://localhost:8000'}));
+    axios.create({baseURL: 'http://localhost:8001'}));
 
 export { kernel };

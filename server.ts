@@ -1,12 +1,11 @@
 import "reflect-metadata";
 import * as restify from 'restify';
 import {kernel} from "./src/infrastructure/di/inversify.config";
-import {CreateTransferController} from "./src/ui/http/controllers/CreateTransferController";
 import {TYPES} from "./src/infrastructure/di/types";
 import {AddItemController} from "./src/ui/http/controllers/AddItemController";
 import {ReleaseTransferController} from "./src/ui/http/controllers/ReleaseTransferController";
-import { v4 as uuid } from 'uuid';
 import {GetTransferController} from "./src/ui/http/controllers/GetTransferController";
+import {CreateTransferController} from "./src/ui/http/controllers/CreateTransferController";
 
 let server = restify.createServer();
 server.use(restify.plugins.bodyParser({ mapParams: false }));
@@ -33,13 +32,4 @@ server.get('/transfers/:transferId', (req, res, next) => {
 const releaseTransferController = kernel.get<ReleaseTransferController>(TYPES.ReleaseTransferController);
 server.post('/transfers/:transferId/release', (req, res, next) => {
     releaseTransferController.release(req, res, next);
-});
-
-// My fake warehouse system
-server.post('/outbound', (req, res, next) => {
-   res.send({
-       response_id: uuid(),
-       status: 'Processed'
-   });
-   next();
 });

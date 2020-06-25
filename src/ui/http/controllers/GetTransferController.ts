@@ -4,6 +4,7 @@ import {GetTransferQuery} from "../../../application/services/GetTransferQuery";
 import {TYPES} from "../../../infrastructure/di/types";
 import {GetTransferHandler} from "../../../application/services/GetTransferHandler";
 import {UnknownTransferException} from "../../../application/services/UnknownTransferException";
+import {NotFoundError} from "restify-errors";
 
 @injectable()
 export class GetTransferController {
@@ -17,10 +18,10 @@ export class GetTransferController {
             res.send(transferDto);
         } catch (exception) {
             if (exception instanceof UnknownTransferException) {
-                console.log('Ooops');
+                return next(new NotFoundError());
             }
-            // Do something else
+            // Do something else...
         }
-        next();
+        return next();
     }
 }

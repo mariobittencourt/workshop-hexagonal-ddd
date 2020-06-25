@@ -11,6 +11,7 @@ export class HighJumpTranslator {
     }
 
     private convertStatusToState(status: string): number {
+        // The remote context may have different definitions than our bounded context
         switch (status.toLowerCase()) {
             case 'pending':
                 return OutboundState.PENDING;

@@ -15,6 +15,7 @@ export class ReleaseTransferHandler {
     async handle(command: ReleaseTransferCommand): Promise<boolean> {
         try {
             let transfer = await this.repository.findByIdOrFail(TransferId.createFromString(command.transferId));
+            transfer.release();
             const outbound = await this.outboundService.create(transfer);
             transfer.completeRelease(outbound);
             await this.repository.save(transfer);
