@@ -3,6 +3,11 @@ export class TransferItemDto {
 }
 
 export class TransferDto {
-    constructor(public readonly transferId: string, public readonly state: string, public readonly items: Array<TransferItemDto>) {
+    constructor(
+        public readonly transferId: string,
+        public readonly origin: string,
+        public readonly destination: string,
+        public readonly state: string,
+        public readonly items: Array<TransferItemDto>) {
     }
 }
