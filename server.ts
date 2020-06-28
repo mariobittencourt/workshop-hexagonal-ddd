@@ -12,7 +12,7 @@ let server = restify.createServer();
 server.use(restify.plugins.bodyParser({ mapParams: false }));
 
 server.listen(8000, () => {
-    console.log('%s listening at %s for your requests...', server.name, server.url);
+    console.log('Inventory => %s listening at %s for your requests...', server.name, server.url);
 });
 
 const createTransferController = kernel.get<CreateTransferController>(TYPES.CreateTransferController);
