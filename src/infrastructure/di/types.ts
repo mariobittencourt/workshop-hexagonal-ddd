@@ -1,8 +1,8 @@
 const TYPES = {
     TransferRepository: Symbol.for('TransferRepository'),
 
-    CreateTransferHandler: Symbol.for('CreateTransferHandler'),
-    CreateTransferController: Symbol.for('CreateTransferController'),
+    PlaceTransferHandler: Symbol.for('PlaceTransferHandler'),
+    PlaceTransferController: Symbol.for('PlaceTransferController'),
 
     AddItemHandler: Symbol.for('AddItemHandler'),
     AddItemController: Symbol.for('AddItemController'),

@@ -5,7 +5,7 @@ import {TYPES} from "./src/infrastructure/di/types";
 import {AddItemController} from "./src/ui/http/controllers/AddItemController";
 import {ReleaseTransferController} from "./src/ui/http/controllers/ReleaseTransferController";
 import {GetTransferController} from "./src/ui/http/controllers/GetTransferController";
-import {CreateTransferController} from "./src/ui/http/controllers/CreateTransferController";
+import {PlaceTransferController} from "./src/ui/http/controllers/PlaceTransferController";
 import {v4 as uuid} from "uuid";
 
 let server = restify.createServer();
@@ -15,9 +15,9 @@ server.listen(8000, () => {
     console.log('Inventory => %s listening at %s for your requests...', server.name, server.url);
 });
 
-const createTransferController = kernel.get<CreateTransferController>(TYPES.CreateTransferController);
+const placeTransferController = kernel.get<PlaceTransferController>(TYPES.PlaceTransferController);
 server.post('/transfers', (req, res, next) => {
-    createTransferController.create(req, res, next);
+    placeTransferController.place(req, res, next);
 });
 
 const addItemController = kernel.get<AddItemController>(TYPES.AddItemController);

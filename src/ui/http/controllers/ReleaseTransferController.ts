@@ -14,11 +14,11 @@ export class ReleaseTransferController {
         const command = new ReleaseTransferCommand(req.params.transferId);
         try {
             const response = await this.handler.handle(command);
-            res.send({success: response});
+            res.send(response);
         } catch (exception) {
             // Add proper exception handling as different exceptions could lead to different errors to be
             // sent back
-            return next(new BadRequestError());
+            return next(new BadRequestError(exception.message));
         }
         return next();
     }

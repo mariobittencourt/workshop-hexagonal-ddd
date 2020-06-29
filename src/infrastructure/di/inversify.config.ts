@@ -1,7 +1,7 @@
 import {Container} from "inversify";
-import {CreateTransferController} from "../../ui/http/controllers/CreateTransferController";
+import {PlaceTransferController} from "../../ui/http/controllers/PlaceTransferController";
 import {TYPES} from "./types";
-import {CreateTransferHandler} from "../../application/services/CreateTransferHandler";
+import {PlaceTransferHandler} from "../../application/services/PlaceTransferHandler";
 import {TransferRepository} from "../../domain/models/TransferRepository";
 import {InMemoryTransferRepository} from "../domain/models/InMemoryTransferRepository";
 import {AddItemController} from "../../ui/http/controllers/AddItemController";
@@ -19,8 +19,8 @@ import {GetTransferController} from "../../ui/http/controllers/GetTransferContro
 const kernel = new Container();
 kernel.bind<TransferRepository>(TYPES.TransferRepository).to(InMemoryTransferRepository).inSingletonScope();
 
-kernel.bind<CreateTransferController>(TYPES.CreateTransferController).to(CreateTransferController);
-kernel.bind<CreateTransferHandler>(TYPES.CreateTransferHandler).to(CreateTransferHandler);
+kernel.bind<PlaceTransferController>(TYPES.PlaceTransferController).to(PlaceTransferController);
+kernel.bind<PlaceTransferHandler>(TYPES.PlaceTransferHandler).to(PlaceTransferHandler);
 
 kernel.bind<AddItemController>(TYPES.AddItemController).to(AddItemController);
 kernel.bind<AddItemHandler>(TYPES.AddItemHandler).to(AddItemHandler);
