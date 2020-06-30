@@ -8,7 +8,7 @@ servers:
 paths:
   /transfers:
     post:
-      summary: ''
+      summary: Place a Transfer
       operationId: post-transfers
       responses:
         '200':
@@ -59,7 +59,7 @@ paths:
         in: path
         required: true
     post:
-      summary: ''
+      summary: Add Item to a Transfer
       operationId: post-transfers-transferId-items
       responses:
         '200':
@@ -81,6 +81,17 @@ paths:
                   numberOfItems:
                     type: integer
                     minimum: 0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sku:
+                  type: string
+                quantity:
+                  type: integer
+                  minimum: 1
   '/transfers/{transferId}':
     parameters:
       - schema:
@@ -89,7 +100,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get a Transfer
       tags: []
       responses:
         '200':
@@ -99,6 +110,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Transfer'
       operationId: get-transfers-transferId
+      description: ''
   '/transfers/{transferId}/release':
     parameters:
       - schema:
@@ -107,7 +119,7 @@ paths:
         in: path
         required: true
     post:
-      summary: ''
+      summary: Release a transfer
       operationId: post-transfer-transferId-release
       responses:
         '200':
