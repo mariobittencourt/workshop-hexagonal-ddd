@@ -3,6 +3,7 @@ import {Item} from "./Item";
 import {InvalidTransferException} from "./InvalidTransferException";
 import {Route} from "./Route";
 import {Outbound} from "./Outbound";
+import {Quantity} from "./Quantity";
 
 export enum TransferStates {
     DRAFT,
@@ -25,7 +26,7 @@ export class Transfer {
     }
 
     addItem(sku: string, quantity: number): void {
-        this._items.push(Item.create(sku, quantity));
+        this._items.push(Item.create(sku, Quantity.create(quantity)));
     }
 
     release(): void {

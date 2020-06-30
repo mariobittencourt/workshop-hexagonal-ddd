@@ -19,6 +19,6 @@ export class GetTransferHandler {
             transfer.route.origin.toString(),
             transfer.route.destination.toString(),
             TransferStates[transfer.state],
-            transfer.items.map(item => new TransferItemDto(item.sku, item.quantity)));
+            transfer.items.map(item => new TransferItemDto(item.sku, item.quantity.value)));
     }
 }

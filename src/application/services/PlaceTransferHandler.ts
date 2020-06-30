@@ -16,9 +16,11 @@ export class PlaceTransferHandler {
     async handle(command: PlaceTransferCommand): Promise<PlaceTransferDto> {
         const origin = Location.createFromString(command.origin);
         const destination = Location.createFromString(command.destination);
+
         const transfer = Transfer.place(
             TransferId.create(),
             Route.create(origin, destination));
+
         await this.repository.add(transfer);
         return new PlaceTransferDto(transfer.id.toString(), TransferStates[transfer.state]);
     }

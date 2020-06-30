@@ -4,7 +4,6 @@
   "description": "Workshop Hexagonal Architecture with DDD",
   "main": "index.js",
   "dependencies": {
-    "@ssense/logger": "^1.0.3",
     "axios": "^0.19.2",
     "inversify": "^5.0.1",
     "reflect-metadata": "^0.1.13",
