@@ -4,7 +4,7 @@
   "description": "Workshop Hexagonal Architecture with DDD",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "inversify": "^5.0.1",
     "reflect-metadata": "^0.1.13",
     "restify": "^8.5.1",
